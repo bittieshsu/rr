@@ -261,7 +261,7 @@ function _resolve_and_set_hosts() {
     # Remove existing entry for this domain
     sed -i "/[[:space:]]${DOMAIN//./\\.}[[:space:]]*$/d" /etc/hosts 2>/dev/null || true
     # Add new entry
-    echo "${IP}    ${DOMAIN}" | tee -a /etc/hosts >/dev/null 2>&1
+    printf '%- 16s%s\n' "${IP}" "${DOMAIN}" | tee -a /etc/hosts >/dev/null 2>&1
     return 0
   }
   local DOMAIN="${1}"
